@@ -7,8 +7,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-01-08'
 modified: '2026-03-16'
 url: >-
@@ -21,8 +20,7 @@ apis:
       We provide a suite of apis that allow you to manipulate and synthesize
       video and audio content with state-of-the-art (sota) models.
     humanURL: https://docs.synclabs.so/api-reference/introduction
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: https://docs.synclabs.so/api-reference/introduction
