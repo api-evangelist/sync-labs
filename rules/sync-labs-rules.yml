@@ -1,0 +1,84 @@
+extends: spectral:oas
+rules:
+
+  sync-labs-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 /-]*$"
+
+  sync-labs-operation-has-operation-id:
+    description: All operations must have an operationId
+    message: Operation is missing operationId
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: operationId
+      function: truthy
+
+  sync-labs-api-key-auth:
+    description: All operations should use API key authentication
+    message: Operations should reference ApiKeyAuth security scheme
+    severity: warn
+    given: "$"
+    then:
+      field: security
+      function: truthy
+
+  sync-labs-v2-versioned-paths:
+    description: API paths should use versioned base URL (/v2/)
+    message: Operations should be under a versioned path prefix
+    severity: info
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/v[0-9]$"
+
+  sync-labs-async-status-field:
+    description: Async generation responses must include a status field
+    message: Generation response schema should include a status field
+    severity: warn
+    given: "$.components.schemas.GenerationResponse.properties"
+    then:
+      field: status
+      function: truthy
+
+  sync-labs-error-response-defined:
+    description: Operations should define error responses
+    message: Operation is missing error responses
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["400"]
+            - required: ["401"]
+            - required: ["429"]
+
+  sync-labs-rate-limit-documented:
+    description: Rate-limited endpoints should document 429 response
+    message: POST generation endpoint should document 429 rate limit response
+    severity: warn
+    given: "$.paths['/generate']['post'].responses"
+    then:
+      field: "429"
+      function: truthy
+
+  sync-labs-webhook-url-format:
+    description: Webhook URL parameters should use URI format
+    message: webhook_url property should have format uri
+    severity: hint
+    given: "$.components.schemas.*.properties.webhook_url"
+    then:
+      field: format
+      function: enumeration
+      functionOptions:
+        values:
+          - uri

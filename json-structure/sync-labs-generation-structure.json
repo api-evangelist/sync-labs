@@ -1,0 +1,15 @@
+{
+  "name": "Sync Labs Generation",
+  "description": "Structure documentation for a Sync Labs lip-sync generation job",
+  "fields": [
+    { "name": "id", "type": "string", "description": "Unique generation job ID" },
+    { "name": "status", "type": "enum(pending|processing|completed|failed)", "description": "Current job status" },
+    { "name": "created_at", "type": "string(date-time)", "description": "Job submission timestamp" },
+    { "name": "completed_at", "type": "string(date-time)|null", "description": "Job completion timestamp" },
+    { "name": "video_url", "type": "string(uri)|null", "description": "Output video download URL (set when completed)" },
+    { "name": "model", "type": "enum(sync-3|lipsync-2-pro|lipsync-2|lipsync-1.9|react-1)", "description": "AI model used" },
+    { "name": "error", "type": "string|null", "description": "Error message if failed" },
+    { "name": "duration_seconds", "type": "number(float)", "description": "Output video duration in seconds" },
+    { "name": "cost", "type": "number(float)|null", "description": "Charged cost in USD" }
+  ]
+}

@@ -1,0 +1,322 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Sync Labs API
+  description: >-
+    The Sync Labs API provides AI-powered lip-sync and visual dubbing
+    capabilities for video content. Supports single generation, batch
+    processing, asset management, and real-time webhook notifications.
+  tags:
+    - Artificial Intelligence
+    - Dubbing
+    - Lip Sync
+    - Media
+    - Sync Labs
+    - Video
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      SYNC_LABS_API_KEY: SYNC_LABS_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: sync-labs
+      baseUri: https://api.sync.so/v2
+      description: Sync Labs AI lip-sync API
+      authentication:
+        type: apikey
+        key: x-api-key
+        value: "{{SYNC_LABS_API_KEY}}"
+        placement: header
+      resources:
+        - name: generate
+          path: /generate
+          description: Lip-sync video generation
+          operations:
+            - name: create-generation
+              method: POST
+              description: Create a lip-sync generation job
+              body:
+                type: json
+                data:
+                  video_url: "{{tools.videoUrl}}"
+                  audio_url: "{{tools.audioUrl}}"
+                  model: "{{tools.model}}"
+                  webhook_url: "{{tools.webhookUrl}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: generationId
+                  type: string
+                  value: "$.id"
+                - name: status
+                  type: string
+                  value: "$.status"
+            - name: list-generations
+              method: GET
+              description: List all generation jobs
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Maximum results to return
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: Filter by status
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-generation
+              method: GET
+              description: Get status and result of a generation job
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Generation job ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+                - name: status
+                  type: string
+                  value: "$.status"
+                - name: videoUrl
+                  type: string
+                  value: "$.video_url"
+
+        - name: estimate-cost
+          path: /generate/estimate-cost
+          description: Cost estimation before generation
+          operations:
+            - name: estimate-cost
+              method: GET
+              description: Estimate cost for a generation
+              inputParameters:
+                - name: model
+                  in: query
+                  type: string
+                  required: true
+                  description: AI model to use
+                - name: duration
+                  in: query
+                  type: number
+                  required: true
+                  description: Video duration in seconds
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: batch
+          path: /batch
+          description: Batch video generation
+          operations:
+            - name: create-batch
+              method: POST
+              description: Create a batch of generation jobs
+              body:
+                type: json
+                data:
+                  generations: "{{tools.generations}}"
+                  webhook_url: "{{tools.webhookUrl}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: batchId
+                  type: string
+                  value: "$.id"
+            - name: list-batches
+              method: GET
+              description: List all batch jobs
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-batch
+              method: GET
+              description: Get status of a batch job
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: Batch job ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: assets
+          path: /assets
+          description: Uploaded media asset management
+          operations:
+            - name: list-assets
+              method: GET
+              description: List all uploaded assets
+              inputParameters:
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                  description: Filter by asset type (video or audio)
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: models
+          path: /models
+          description: Available AI model listing
+          operations:
+            - name: list-models
+              method: GET
+              description: List available AI lip-sync models
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: sync-labs-rest
+      resources:
+        - path: /v1/generate
+          name: generate
+          description: Generation management
+          operations:
+            - method: POST
+              name: create-generation
+              description: Create a lip-sync generation
+              call: "sync-labs.create-generation"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: list-generations
+              description: List all generations
+              call: "sync-labs.list-generations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/generate/{id}
+          name: generation
+          description: Individual generation
+          operations:
+            - method: GET
+              name: get-generation
+              description: Get generation status
+              call: "sync-labs.get-generation"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/models
+          name: models
+          description: Available models
+          operations:
+            - method: GET
+              name: list-models
+              description: List available AI models
+              call: "sync-labs.list-models"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: sync-labs-mcp
+      transport: http
+      tools:
+        - name: create-lipsync
+          description: Create an AI lip-sync generation by combining a video with audio
+          hints:
+            readOnly: false
+            destructive: false
+          call: "sync-labs.create-generation"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-generation-status
+          description: Check the status and retrieve the output URL of a lip-sync generation
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "sync-labs.get-generation"
+          with:
+            id: "tools.generationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-generations
+          description: List all lip-sync generation jobs and their statuses
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "sync-labs.list-generations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: estimate-cost
+          description: Estimate the cost of a lip-sync generation before submitting
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "sync-labs.estimate-cost"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-batch
+          description: Submit multiple lip-sync generations as a batch (up to 500 videos)
+          hints:
+            readOnly: false
+            destructive: false
+          call: "sync-labs.create-batch"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-batch-status
+          description: Check the status and results of a batch lip-sync job
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "sync-labs.get-batch"
+          with:
+            id: "tools.batchId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-models
+          description: List available Sync Labs AI lip-sync models and their capabilities
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sync-labs.list-models"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-assets
+          description: List uploaded video and audio assets available for reuse
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "sync-labs.list-assets"
+          outputParameters:
+            - type: object
+              mapping: "$."

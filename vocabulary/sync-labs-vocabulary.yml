@@ -1,0 +1,150 @@
+vocabulary:
+  provider: Sync Labs
+  description: >-
+    Domain vocabulary for the Sync Labs AI lip-sync and visual dubbing
+    platform, covering video generation, AI models, content localization,
+    and media processing concepts.
+  version: '1.0'
+  created: '2026-05-03'
+  modified: '2026-05-03'
+  tags:
+    - Artificial Intelligence
+    - Dubbing
+    - Lip Sync
+    - Media
+    - Video
+
+  terms:
+
+    - term: Lip Sync
+      definition: >-
+        The synchronization of lip movements in a video with an audio track.
+        AI lip sync analyzes the audio phonemes and adjusts the facial
+        movements in the video to match the new speech.
+      category: Core Concept
+      tags:
+        - Lip Sync
+        - Video
+
+    - term: Visual Dubbing
+      definition: >-
+        The process of replacing the original audio of a video with translated
+        or modified audio while also adjusting the speaker's lip movements to
+        match the new audio. Produces natural-looking dubbed content.
+      category: Core Concept
+      tags:
+        - Dubbing
+        - Localization
+        - Video
+
+    - term: Generation
+      definition: >-
+        A single asynchronous job that processes a video and audio input pair
+        through the Sync Labs AI model to produce a lip-synced output video.
+        Generations are identified by a unique ID and have a status lifecycle.
+      category: Technical
+      tags:
+        - API
+        - Processing
+
+    - term: Batch
+      definition: >-
+        A collection of multiple generation jobs submitted together for
+        processing. Batch processing enables large-scale content localization
+        at reduced cost and management overhead. Supports up to 500 generations
+        per batch on Scale+ plans.
+      category: Technical
+      tags:
+        - Batch Processing
+        - Scale
+
+    - term: Model
+      definition: >-
+        An AI neural network trained to perform lip-sync operations. Sync Labs
+        offers multiple models with different quality/speed/cost tradeoffs:
+        sync-3 (most powerful), lipsync-2-pro (premium), lipsync-2 (general),
+        lipsync-1.9 (fastest), react-1 (expressive emotions).
+      category: AI
+      tags:
+        - Artificial Intelligence
+        - Models
+
+    - term: Synergize
+      definition: >-
+        A Sync Labs API feature that enables multi-speaker detection and
+        selection in videos with multiple faces, applying lip-sync to the
+        correct speaker based on audio analysis.
+      category: Feature
+      tags:
+        - Feature
+        - Multi-Speaker
+
+    - term: Asset
+      definition: >-
+        A video or audio file uploaded to the Sync Labs platform for reuse
+        across multiple generations. Assets avoid re-uploading the same
+        source files and enable faster generation workflows.
+      category: Technical
+      tags:
+        - Media
+        - Storage
+
+    - term: Webhook
+      definition: >-
+        An HTTP callback that Sync Labs sends to a specified URL when a
+        generation or batch job completes. Enables event-driven workflows
+        without polling the API for status.
+      category: Technical
+      tags:
+        - API
+        - Events
+        - Webhooks
+
+    - term: Content Localization
+      definition: >-
+        The process of adapting video content for different language markets.
+        Using Sync Labs, translated audio tracks are combined with lip-sync
+        to create natural-looking dubbed versions for global audiences.
+      category: Use Case
+      tags:
+        - Dubbing
+        - Localization
+        - Video
+
+    - term: Face Resolution
+      definition: >-
+        The pixel dimensions of the face region in the generated video. Higher
+        face resolution (up to 4K native in sync-3) produces more detailed
+        lip movements but at higher cost per second.
+      category: Technical
+      tags:
+        - Quality
+        - Video
+
+    - term: Lifetime Value Forecasting
+      definition: >-
+        Not applicable to Sync Labs (see Sync API vocabulary). Sync Labs
+        focuses on AI video generation, not advertising analytics.
+      category: N/A
+
+    - term: Rate Limit
+      definition: >-
+        API usage constraint of 60 requests per minute on the POST /v2/generate
+        endpoint. Batch submissions count as a single request regardless of
+        the number of generations included.
+      category: Technical
+      tags:
+        - API
+        - Rate Limiting
+
+    - term: Dubbing Pipeline
+      definition: >-
+        An automated workflow for producing dubbed video content at scale,
+        typically involving: translation (TTS or human), audio production,
+        batch submission to Sync Labs, webhook completion handling,
+        and delivery to CDN or content platform.
+      category: Use Case
+      tags:
+        - Automation
+        - Dubbing
+        - Workflows

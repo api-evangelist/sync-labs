@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/sync-labs/blob/main/json-schema/sync-labs-generation-schema.json",
+  "title": "Sync Labs Generation",
+  "description": "A lip-sync video generation job in the Sync Labs platform",
+  "type": "object",
+  "required": ["id", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique generation job identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "processing", "completed", "failed"],
+      "description": "Current status of the generation job"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the generation was submitted"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "description": "Timestamp when the generation completed (null if not yet finished)"
+    },
+    "video_url": {
+      "type": "string",
+      "format": "uri",
+      "nullable": true,
+      "description": "URL to download the output lip-synced video (available when status is 'completed')"
+    },
+    "model": {
+      "type": "string",
+      "enum": ["sync-3", "lipsync-2-pro", "lipsync-2", "lipsync-1.9", "react-1"],
+      "description": "AI model used for generation"
+    },
+    "error": {
+      "type": "string",
+      "nullable": true,
+      "description": "Error message if the generation failed"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "format": "float",
+      "description": "Duration of the generated video in seconds"
+    },
+    "cost": {
+      "type": "number",
+      "format": "float",
+      "nullable": true,
+      "description": "Actual cost in USD charged for this generation"
+    }
+  }
+}

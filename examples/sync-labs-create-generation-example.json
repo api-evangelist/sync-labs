@@ -1,0 +1,39 @@
+{
+  "title": "Create Lip-Sync Generation",
+  "description": "Example of submitting a video dubbing generation using the Sync Labs API",
+  "operation": "POST /v2/generate",
+  "request": {
+    "headers": {
+      "x-api-key": "sk_sync_labs_XXXXXXXXXXXXXXXXXXXX",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "video_url": "https://example.com/original-video-en.mp4",
+      "audio_url": "https://example.com/dubbed-audio-es.mp3",
+      "model": "lipsync-2-pro",
+      "webhook_url": "https://myapp.com/webhooks/sync-labs",
+      "synergize": false,
+      "output_format": "mp4"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "gen_A1B2C3D4E5F6G7H8",
+      "status": "pending",
+      "created_at": "2026-05-03T12:00:00Z",
+      "completed_at": null,
+      "video_url": null,
+      "model": "lipsync-2-pro",
+      "error": null,
+      "duration_seconds": null,
+      "cost": null
+    }
+  },
+  "notes": [
+    "Poll GET /v2/generate/{id} for status updates, or use the webhook_url for push notifications",
+    "lipsync-2-pro provides premium quality at $0.067/sec at 25fps",
+    "Maximum 60 requests/min on POST /v2/generate",
+    "Output video available at video_url when status becomes 'completed'"
+  ]
+}

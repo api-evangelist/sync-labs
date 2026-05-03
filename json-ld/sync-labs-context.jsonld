@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "synclabs": "https://sync.so/vocab#",
+
+    "LipSyncGeneration": {
+      "@id": "synclabs:LipSyncGeneration",
+      "@type": "@id",
+      "skos:definition": "An AI-powered video lip synchronization job"
+    },
+    "BatchGeneration": {
+      "@id": "synclabs:BatchGeneration",
+      "@type": "@id",
+      "rdfs:subClassOf": { "@id": "synclabs:LipSyncGeneration" }
+    },
+    "LipSyncModel": {
+      "@id": "synclabs:LipSyncModel",
+      "@type": "@id",
+      "rdfs:subClassOf": { "@id": "schema:SoftwareApplication" }
+    },
+    "MediaAsset": {
+      "@id": "synclabs:MediaAsset",
+      "@type": "@id",
+      "rdfs:subClassOf": { "@id": "schema:MediaObject" }
+    },
+    "VideoAsset": {
+      "@id": "synclabs:VideoAsset",
+      "@type": "@id",
+      "rdfs:subClassOf": { "@id": "schema:VideoObject" }
+    },
+    "AudioAsset": {
+      "@id": "synclabs:AudioAsset",
+      "@type": "@id",
+      "rdfs:subClassOf": { "@id": "schema:AudioObject" }
+    },
+    "DubbingProject": {
+      "@id": "synclabs:DubbingProject",
+      "@type": "@id",
+      "skos:definition": "A content localization project using AI lip-sync technology"
+    },
+
+    "generationId": { "@id": "synclabs:generationId", "@type": "xsd:string" },
+    "generationStatus": { "@id": "synclabs:generationStatus", "@type": "xsd:string" },
+    "modelId": { "@id": "synclabs:modelId", "@type": "xsd:string" },
+    "videoUrl": { "@id": "schema:contentUrl", "@type": "@id" },
+    "audioUrl": { "@id": "synclabs:audioUrl", "@type": "@id" },
+    "outputVideoUrl": { "@id": "synclabs:outputVideoUrl", "@type": "@id" },
+    "durationSeconds": { "@id": "schema:duration", "@type": "xsd:decimal" },
+    "costUsd": { "@id": "schema:price", "@type": "xsd:decimal" },
+    "costPerSecond": { "@id": "synclabs:costPerSecond", "@type": "xsd:decimal" },
+    "maxFaceResolution": { "@id": "synclabs:maxFaceResolution", "@type": "xsd:integer" },
+    "batchId": { "@id": "synclabs:batchId", "@type": "xsd:string" },
+    "batchSize": { "@id": "synclabs:batchSize", "@type": "xsd:integer" },
+    "webhookUrl": { "@id": "synclabs:webhookUrl", "@type": "@id" },
+    "createdAt": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "completedAt": { "@id": "schema:dateModified", "@type": "xsd:dateTime" }
+  }
+}
