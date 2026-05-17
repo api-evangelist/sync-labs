@@ -96,7 +96,7 @@ common:
     url: https://sync.so/pricing
   - type: API Keys
     url: https://sync.so/settings/api-keys
-  - type: Sign Up
+  - type: SignUp
     url: https://sync.so/sign-up
   - type: Contact
     url: mailto:hello@sync.so
