@@ -104,6 +104,8 @@ common:
     url: mailto:hello@sync.so
   - type: Y Combinator
     url: https://www.ycombinator.com/companies/sync-2
+  - type: LLMsTxt
+    url: https://sync.so/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
