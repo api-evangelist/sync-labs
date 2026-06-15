@@ -1,66 +1,111 @@
-# Sync Labs
+# Sync Labs (sync-labs)
 
-Sync Labs (sync.so) provides studio-grade AI lip-sync and visual dubbing APIs. Their technology synchronizes video lip movements with any audio track using state-of-the-art neural networks, enabling professional video dubbing, content localization, and personalized video generation at scale. Backed by Y Combinator.
+Sync Labs (sync.so) provides a suite of studio-grade AI lip-sync and visual dubbing APIs. Their technology synchronizes video lip movements with any audio track using state-of-the-art models, enabling professional video dubbing, content localization, and personalized video generation at scale. Models include sync-3, lipsync-2-pro, lipsync-2, lipsync-1.9, and react-1, with support for batch processing (up to 500 videos), webhooks, Python and TypeScript SDKs, Adobe Premiere plugin, and ComfyUI integration. Backed by Y Combinator.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/sync-labs/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sync-labs/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Artificial Intelligence
+- Content Localization
+- Dubbing
+- Lip Sync
+- Media
+- Video
+- Visual AI
+
+## Timestamps
+
+- **Created:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
-| API | Description |
-|---|---|
-| [Sync Labs API](https://sync.so/docs/introduction) | AI lip-sync REST API: single generation, batch, assets, models |
-| [Python SDK](https://pypi.org/project/syncsdk/) | Official Python 3.8+ SDK (`pip install syncsdk`) |
-| [TypeScript SDK](https://www.npmjs.com/package/@sync.so/sdk) | Official Node.js 18+ SDK (`npm i @sync.so/sdk`) |
+### Sync Labs API
 
-## Models
+The Sync Labs REST API provides programmatic access to AI lip-sync and visual dubbing capabilities. Submit video and audio inputs to generate studio-grade synchronized output videos. Supports single generation, batch processing of up to 500 videos, asset management, cost estimation, and webhook notifications. Rate limited to 60 requests/min for generation endpoints.
 
-| Model | Description | Cost/sec |
-|---|---|---|
-| sync-3 | Most powerful, 4K native, professional grade | $0.133 |
-| lipsync-2-pro | Premium quality, enhanced facial detail | $0.067 |
-| lipsync-2 | General purpose, preserves speaking style | $0.035 |
-| lipsync-1.9 | Fastest, maximum speed for simple videos | $0.020 |
-| react-1 | Expressive lip sync with emotions | Custom |
+- **Human URL:** [https://sync.so/api](https://sync.so/api)
+- **Base URL:** `https://api.sync.so/v2`
 
-## OpenAPI Specifications
+#### Tags
 
-| Spec | File |
-|---|---|
-| Sync Labs API v2 | [openapi/sync-labs-openapi.yml](openapi/sync-labs-openapi.yml) |
+- Artificial Intelligence
+- Batch Processing
+- Dubbing
+- Lip Sync
+- Media Processing
+- Video
+- Webhooks
 
-## Capabilities
+#### Properties
 
-### Shared Per-API Definitions
+- [Documentation](https://sync.so/docs/introduction)
+- [OpenAPI](openapi/sync-labs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/sync-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sync-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Pricing](https://sync.so/pricing)
+- [Quickstart](https://sync.so/docs/quickstart)
 
-| Capability | Description |
-|---|---|
-| [Sync Labs API](capabilities/shared/sync-labs-api.yaml) | Generation, batch, assets, models, cost estimation |
+### Sync Labs Python SDK
 
-### Workflow Capabilities
+Official Python SDK for integrating the Sync Labs lip-sync API into Python applications. Supports Python 3.8+. Install via pip install syncsdk.
 
-| Workflow | Description |
-|---|---|
-| [Video Dubbing](capabilities/video-dubbing.yaml) | Full dubbing workflow: generate, batch, estimate, monitor |
+- **Human URL:** [https://sync.so/docs/introduction](https://sync.so/docs/introduction)
 
-## Artifacts
+#### Tags
 
-| Type | Resource |
-|---|---|
-| Spectral Rules | [rules/sync-labs-rules.yml](rules/sync-labs-rules.yml) |
-| JSON Schema - Generation | [json-schema/sync-labs-generation-schema.json](json-schema/sync-labs-generation-schema.json) |
-| JSON Structure - Generation | [json-structure/sync-labs-generation-structure.json](json-structure/sync-labs-generation-structure.json) |
-| JSON-LD Context | [json-ld/sync-labs-context.jsonld](json-ld/sync-labs-context.jsonld) |
-| Example - Create Generation | [examples/sync-labs-create-generation-example.json](examples/sync-labs-create-generation-example.json) |
-| Vocabulary | [vocabulary/sync-labs-vocabulary.yml](vocabulary/sync-labs-vocabulary.yml) |
+- Python
+- SDK
 
-## Links
+#### Properties
 
-- **Website**: https://sync.so
-- **Documentation**: https://sync.so/docs/introduction
-- **Quickstart**: https://sync.so/docs/quickstart
-- **Pricing**: https://sync.so/pricing
-- **API Keys**: https://sync.so/settings/api-keys
-- **Y Combinator**: https://www.ycombinator.com/companies/sync-2
-- **Contact**: hello@sync.so
+- [Documentation](https://sync.so/docs/introduction)
+- [Py P I](https://pypi.org/project/syncsdk/)
+- [Postman Collection](collections/sync-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sync-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Sync Labs TypeScript SDK
+
+Official TypeScript/Node.js SDK for integrating the Sync Labs API. Supports Node.js 18+. Install via npm install @sync.so/sdk.
+
+- **Human URL:** [https://sync.so/docs/introduction](https://sync.so/docs/introduction)
+
+#### Tags
+
+- JavaScript
+- Node.js
+- SDK
+- TypeScript
+
+#### Properties
+
+- [Documentation](https://sync.so/docs/introduction)
+- [N P M](https://www.npmjs.com/package/@sync.so/sdk)
+- [Postman Collection](collections/sync-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sync-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [GitHub Organization](https://github.com/synchronicity-labs)
+- [LinkedIn](https://www.linkedin.com/company/synclabs-ai)
+- [Website](https://sync.so)
+- [Documentation](https://sync.so/docs/introduction)
+- [Quickstart](https://sync.so/docs/quickstart)
+- [Pricing](https://sync.so/pricing)
+- [A P I  Keys](https://sync.so/settings/api-keys)
+- [Sign Up](https://sync.so/sign-up)
+- [Contact](mailto:hello@sync.so)
+- [Y  Combinator](https://www.ycombinator.com/companies/sync-2)
+- [L L Ms Txt](https://sync.so/llms.txt)
 
 ## Maintainers
 
-**Kin Lane** | kin@apievangelist.com
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

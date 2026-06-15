@@ -1,0 +1,256 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sync Labs API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Generate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Generations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/generate",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              }
+            ]
+          },
+          "docs": "List all generation jobs for the authenticated account"
+        },
+        {
+          "info": {
+            "name": "Create Lip-Sync Generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sync.so/v2/generate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a video and audio input to generate a lip-synced output video. The operation is asynchronous — poll the GET endpoint or use webhooks for completion notification. Rate limited to 60 requests/min."
+        },
+        {
+          "info": {
+            "name": "Get Generation Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/generate/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Generation job ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and result of a specific generation job"
+        },
+        {
+          "info": {
+            "name": "Estimate Generation Cost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/generate/estimate-cost",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "AI model to use"
+              },
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query",
+                "description": "Video duration in seconds"
+              }
+            ]
+          },
+          "docs": "Calculate the estimated cost before submitting a generation"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Batches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/batch",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all batch jobs for the authenticated account"
+        },
+        {
+          "info": {
+            "name": "Create Batch Generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sync.so/v2/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit multiple generation jobs in a single batch (up to 500 on Scale+ plans)"
+        },
+        {
+          "info": {
+            "name": "Get Batch Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/batch/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Batch job ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and results of a batch job"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/assets",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset type"
+              }
+            ]
+          },
+          "docs": "List all uploaded assets for the authenticated account"
+        },
+        {
+          "info": {
+            "name": "Get Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/assets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Asset ID"
+              }
+            ]
+          },
+          "docs": "Retrieve details about a specific uploaded asset"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Available Models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/models"
+          },
+          "docs": "Retrieve the list of available AI lip-sync models and their capabilities"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
