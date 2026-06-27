@@ -47,7 +47,7 @@ apis:
         url: openapi/sync-labs-openapi.yml
       - type: Pricing
         url: https://sync.so/pricing
-      - type: Quickstart
+      - type: GettingStarted
         url: https://sync.so/docs/quickstart
   - aid: sync-labs:sync-labs-python-sdk
     name: Sync Labs Python SDK
@@ -88,19 +88,19 @@ common:
     url: https://sync.so
   - type: Documentation
     url: https://sync.so/docs/introduction
-  - type: Quickstart
+  - type: GettingStarted
     url: https://sync.so/docs/quickstart
   - type: Pricing
     url: https://sync.so/pricing
   - type: API Keys
     url: https://sync.so/settings/api-keys
-  - type: SignUp
+  - type: Signup
     url: https://sync.so/sign-up
   - type: Contact
     url: mailto:hello@sync.so
   - type: Y Combinator
     url: https://www.ycombinator.com/companies/sync-2
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://sync.so/llms.txt
 maintainers:
   - FN: Kin Lane
