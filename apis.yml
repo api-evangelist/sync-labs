@@ -80,6 +80,10 @@ apis:
       - type: NPM
         url: https://www.npmjs.com/package/@sync.so/sdk
 common:
+  - type: DomainSecurity
+    url: security/sync-labs-domain-security.yml
+  - type: Authentication
+    url: authentication/sync-labs-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/synchronicity-labs
   - type: LinkedIn
@@ -102,6 +106,8 @@ common:
     url: https://www.ycombinator.com/companies/sync-2
   - type: LlmsText
     url: https://sync.so/llms.txt
+  - url: https://sync.so/blog/rss.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
