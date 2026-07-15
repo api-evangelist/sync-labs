@@ -80,6 +80,8 @@ apis:
       - type: NPM
         url: https://www.npmjs.com/package/@sync.so/sdk
 common:
+  - type: AgenticAccess
+    url: agentic-access/sync-labs-agentic-access.yml
   - type: DomainSecurity
     url: security/sync-labs-domain-security.yml
   - type: Authentication
