@@ -1,0 +1,281 @@
+openapi: 3.0.3
+info:
+  title: Sync Labs Assets Batch API
+  description: The Sync Labs API provides studio-grade AI lip-sync and visual dubbing capabilities. Generate perfectly synchronized lip movements for any video and audio input using state-of-the-art models. Supports single generation, batch processing, asset management, and webhook notifications. Used for video localization, content dubbing, personalized video, and educational content translation.
+  version: v2
+  contact:
+    name: Sync Labs Support
+    email: hello@sync.so
+    url: https://sync.so
+  license:
+    name: Commercial
+    url: https://sync.so/terms
+servers:
+- url: https://api.sync.so/v2
+  description: Sync Labs API v2
+security:
+- ApiKeyAuth: []
+tags:
+- name: Batch
+  description: Batch processing multiple videos
+paths:
+  /batch:
+    post:
+      summary: Create Batch Generation
+      description: Submit multiple generation jobs in a single batch (up to 500 on Scale+ plans)
+      operationId: createBatch
+      tags:
+      - Batch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRequest'
+      responses:
+        '201':
+          description: Batch created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      summary: List Batches
+      description: List all batch jobs for the authenticated account
+      operationId: listBatches
+      tags:
+      - Batch
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of batches
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  batches:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BatchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /batch/{id}:
+    get:
+      summary: Get Batch Status
+      description: Retrieve the status and results of a batch job
+      operationId: getBatch
+      tags:
+      - Batch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Batch job ID
+      responses:
+        '200':
+          description: Batch details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    BatchResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique batch ID
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - partially_failed
+          - failed
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        total:
+          type: integer
+          description: Total number of generations in the batch
+        completed:
+          type: integer
+          description: Number of completed generations
+        failed:
+          type: integer
+          description: Number of failed generations
+        generations:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenerationResponse'
+    ModelId:
+      type: string
+      enum:
+      - sync-3
+      - lipsync-2-pro
+      - lipsync-2
+      - lipsync-1.9
+      - react-1
+      description: AI model identifier
+    BatchRequest:
+      type: object
+      required:
+      - generations
+      properties:
+        generations:
+          type: array
+          maxItems: 500
+          items:
+            $ref: '#/components/schemas/GenerationRequest'
+          description: List of generation requests (up to 500 on Scale+ plans)
+        webhook_url:
+          type: string
+          format: uri
+          description: URL to receive batch completion notification
+    GenerationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique generation job ID
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+          description: Current job status
+        created_at:
+          type: string
+          format: date-time
+          description: Job creation timestamp
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Job completion timestamp
+        video_url:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the output video (available when completed)
+        model:
+          $ref: '#/components/schemas/ModelId'
+        error:
+          type: string
+          nullable: true
+          description: Error message if status is failed
+        duration_seconds:
+          type: number
+          format: float
+          description: Duration of the generated video in seconds
+        cost:
+          type: number
+          format: float
+          nullable: true
+          description: Actual cost of the generation in USD
+    GenerationRequest:
+      type: object
+      required:
+      - video_url
+      - audio_url
+      - model
+      properties:
+        video_url:
+          type: string
+          format: uri
+          description: URL to the source video (MP4 or common video formats)
+        audio_url:
+          type: string
+          format: uri
+          description: URL to the source audio (WAV or MP3)
+        video_asset_id:
+          type: string
+          description: Alternatively, provide an uploaded video asset ID
+        audio_asset_id:
+          type: string
+          description: Alternatively, provide an uploaded audio asset ID
+        model:
+          $ref: '#/components/schemas/ModelId'
+        webhook_url:
+          type: string
+          format: uri
+          description: URL to receive webhook notification on completion
+        synergize:
+          type: boolean
+          description: Enable multi-speaker detection and selection
+        max_face_resolution:
+          type: integer
+          description: Maximum face resolution cap in pixels
+        output_format:
+          type: string
+          enum:
+          - mp4
+          - webm
+          default: mp4
+          description: Output video format
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request ID for support reference
+  responses:
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key from https://sync.so/settings/api-keys

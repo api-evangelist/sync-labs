@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Sync Labs Assets API
+  description: The Sync Labs API provides studio-grade AI lip-sync and visual dubbing capabilities. Generate perfectly synchronized lip movements for any video and audio input using state-of-the-art models. Supports single generation, batch processing, asset management, and webhook notifications. Used for video localization, content dubbing, personalized video, and educational content translation.
+  version: v2
+  contact:
+    name: Sync Labs Support
+    email: hello@sync.so
+    url: https://sync.so
+  license:
+    name: Commercial
+    url: https://sync.so/terms
+servers:
+- url: https://api.sync.so/v2
+  description: Sync Labs API v2
+security:
+- ApiKeyAuth: []
+tags:
+- name: Assets
+  description: Uploaded asset management
+paths:
+  /assets:
+    get:
+      summary: List Assets
+      description: List all uploaded assets for the authenticated account
+      operationId: listAssets
+      tags:
+      - Assets
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - video
+          - audio
+        description: Filter by asset type
+      responses:
+        '200':
+          description: List of assets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  assets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Asset'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /assets/{id}:
+    get:
+      summary: Get Asset
+      description: Retrieve details about a specific uploaded asset
+      operationId: getAsset
+      tags:
+      - Assets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Asset ID
+      responses:
+        '200':
+          description: Asset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request ID for support reference
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique asset ID
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          description: Asset media type
+        filename:
+          type: string
+          description: Original filename
+        size_bytes:
+          type: integer
+          description: File size in bytes
+        duration_seconds:
+          type: number
+          format: float
+          description: Media duration in seconds
+        created_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+          description: Direct download URL
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key from https://sync.so/settings/api-keys
