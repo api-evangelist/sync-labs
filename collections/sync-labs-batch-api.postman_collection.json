@@ -1,0 +1,600 @@
+{
+  "item": [
+    {
+      "id": "b96939f2-c717-43f5-a63c-e8fa914ff4a5",
+      "name": "Batch",
+      "description": {
+        "content": "Batch processing multiple videos",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "61d0bd55-fa60-42ce-a3e0-908abf938c0f",
+          "name": "Create Batch Generation",
+          "request": {
+            "name": "Create Batch Generation",
+            "description": {
+              "content": "Submit multiple generation jobs in a single batch (up to 500 on Scale+ plans)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"generations\": [\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    },\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    }\n  ],\n  \"webhook_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb1b3caf-0314-4643-ac44-e14683bcfff8",
+              "name": "Batch created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generations\": [\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    },\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    }\n  ],\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"pending\",\n  \"created_at\": \"2006-05-06T01:03:51.168Z\",\n  \"completed_at\": \"1972-07-09T11:48:39.763Z\",\n  \"total\": 978,\n  \"completed\": 4969,\n  \"failed\": 0,\n  \"generations\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"pending\",\n      \"created_at\": \"2005-04-21T17:53:17.909Z\",\n      \"completed_at\": \"1986-11-23T18:45:50.515Z\",\n      \"video_url\": \"https://OmkyCiYRbZFeDfLAAuJE.azOeHj2wnz\",\n      \"model\": \"<string>\",\n      \"error\": \"string\",\n      \"duration_seconds\": 7194.768640431728,\n      \"cost\": 5494.947077355211\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"failed\",\n      \"created_at\": \"2015-02-02T05:34:02.613Z\",\n      \"completed_at\": \"1949-04-03T08:17:43.035Z\",\n      \"video_url\": \"http://CFTKGRjnibXicjOVbKtdKxqe.jemsE9PAcBe\",\n      \"model\": \"<string>\",\n      \"error\": \"string\",\n      \"duration_seconds\": 6469.242153723692,\n      \"cost\": 4771.212856434938\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e5cc576-65fb-4cee-b3da-3cc78c6f3b37",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generations\": [\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    },\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    }\n  ],\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "242a13c8-edcf-456c-8b8e-f6bcf1089d54",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generations\": [\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    },\n    {\n      \"video_url\": \"<uri>\",\n      \"audio_url\": \"<uri>\",\n      \"model\": \"<string>\",\n      \"video_asset_id\": \"<string>\",\n      \"audio_asset_id\": \"<string>\",\n      \"webhook_url\": \"<uri>\",\n      \"synergize\": \"<boolean>\",\n      \"max_face_resolution\": \"<integer>\",\n      \"output_format\": \"mp4\"\n    }\n  ],\n  \"webhook_url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c4af95e-fcc8-411f-affd-4fb051623b68",
+          "name": "List Batches",
+          "request": {
+            "name": "List Batches",
+            "description": {
+              "content": "List all batch jobs for the authenticated account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee7bbb55-d3de-4716-8a89-6329f541538f",
+              "name": "List of batches",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batches\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"pending\",\n      \"created_at\": \"2016-09-25T13:41:49.621Z\",\n      \"completed_at\": \"2004-11-21T03:00:41.372Z\",\n      \"total\": 6555,\n      \"completed\": 821,\n      \"failed\": 9320,\n      \"generations\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"failed\",\n          \"created_at\": \"1979-09-05T13:44:09.249Z\",\n          \"completed_at\": \"2012-09-07T02:43:38.280Z\",\n          \"video_url\": \"https://SmrfBasDEzmoFOfTesEQxFAWYJoXCqHiX.itfnn-.oAlZts4O2akJEdk4fg9zmGjOySJSnCvvab9TC1lyVjxvEfIDBEYj7AXTOkt3JJYFQNTI\",\n          \"model\": \"<string>\",\n          \"error\": \"string\",\n          \"duration_seconds\": 9882.466410773215,\n          \"cost\": 551.5196031331838\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"pending\",\n          \"created_at\": \"1975-04-13T14:15:17.716Z\",\n          \"completed_at\": \"1974-12-03T07:37:31.636Z\",\n          \"video_url\": \"https://oYzqLekVZ.judmfr9YS,Xvj3NMHG,\",\n          \"model\": \"<string>\",\n          \"error\": \"string\",\n          \"duration_seconds\": 4517.924052013304,\n          \"cost\": 2030.0885049066453\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"completed\",\n      \"created_at\": \"1991-10-19T13:00:44.376Z\",\n      \"completed_at\": \"1972-02-06T18:54:37.230Z\",\n      \"total\": 1084,\n      \"completed\": 6589,\n      \"failed\": 4729,\n      \"generations\": [\n        {\n          \"id\": \"string\",\n          \"status\": \"pending\",\n          \"created_at\": \"2010-05-23T18:31:34.898Z\",\n          \"completed_at\": \"1964-11-09T23:07:54.709Z\",\n          \"video_url\": \"http://RXwiWvniACofpZ.laaW7kMkuur8FcNF6\",\n          \"model\": \"<string>\",\n          \"error\": \"string\",\n          \"duration_seconds\": 5761.928103072753,\n          \"cost\": 9131.938784644331\n        },\n        {\n          \"id\": \"string\",\n          \"status\": \"processing\",\n          \"created_at\": \"1964-09-04T23:25:37.909Z\",\n          \"completed_at\": \"1986-11-22T21:28:26.228Z\",\n          \"video_url\": \"https://PQBKQRZPikeNPSmkPcjhRZmgua.rkq3-SvLhQ,pkMzn8F1x1,SPUj3mHmo\",\n          \"model\": \"<string>\",\n          \"error\": \"string\",\n          \"duration_seconds\": 4601.0719492983435,\n          \"cost\": 7870.850093987243\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac0ad483-eefc-435b-9f05-f46c5414a740",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cf63d64-be14-4257-98a1-35387e71aa14",
+          "name": "Get Batch Status",
+          "request": {
+            "name": "Get Batch Status",
+            "description": {
+              "content": "Retrieve the status and results of a batch job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Batch job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf7ef8f2-3779-466a-816d-3f5ab34650a6",
+              "name": "Batch details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Batch job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"completed\",\n  \"created_at\": \"1986-07-27T05:46:44.609Z\",\n  \"completed_at\": \"1996-10-24T05:30:30.351Z\",\n  \"total\": 6821,\n  \"completed\": 7198,\n  \"failed\": 4877,\n  \"generations\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"completed\",\n      \"created_at\": \"2008-03-10T19:04:22.563Z\",\n      \"completed_at\": \"1955-06-24T13:53:41.279Z\",\n      \"video_url\": \"https://iAgIUuW.gimB4xcC\",\n      \"model\": \"<string>\",\n      \"error\": \"string\",\n      \"duration_seconds\": 3764.1200596720983,\n      \"cost\": 9609.983213317228\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"failed\",\n      \"created_at\": \"1960-09-06T00:13:37.954Z\",\n      \"completed_at\": \"2018-06-26T01:00:02.804Z\",\n      \"video_url\": \"https://dBOiKIWJ.mpun,,mpuG,NW00MEewUXQ\",\n      \"model\": \"<string>\",\n      \"error\": \"string\",\n      \"duration_seconds\": 2627.1162560484086,\n      \"cost\": 4783.86929638838\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36d0151e-18a2-43a9-99e3-c8f84aedd573",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Batch job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "473ee9f3-349a-4914-b29d-8e732e066b8b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Batch job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sync.so/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7dc3559e-66a1-461e-ad1d-30be104932c4",
+    "name": "Sync Labs Assets Batch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Sync Labs API provides studio-grade AI lip-sync and visual dubbing capabilities. Generate perfectly synchronized lip movements for any video and audio input using state-of-the-art models. Supports single generation, batch processing, asset management, and webhook notifications. Used for video localization, content dubbing, personalized video, and educational content translation.\n\nContact Support:\n Name: Sync Labs Support\n Email: hello@sync.so",
+      "type": "text/plain"
+    }
+  }
+}

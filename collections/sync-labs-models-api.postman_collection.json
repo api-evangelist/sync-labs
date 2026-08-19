@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "7fee7d00-c0b9-4451-98a4-654f7d228bc6",
+      "name": "Models",
+      "description": {
+        "content": "Available AI model listing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "005bf9d9-14b4-4c3c-b1cb-8d715faed292",
+          "name": "List Available Models",
+          "request": {
+            "name": "List Available Models",
+            "description": {
+              "content": "Retrieve the list of available AI lip-sync models and their capabilities",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30849ed6-73d7-430f-aaf8-3f48f3f86102",
+              "name": "List of available models",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"models\": [\n    {\n      \"id\": \"lipsync-2\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"max_resolution\": \"string\",\n      \"max_duration_seconds\": 7101,\n      \"cost_per_second\": 8443.35829058558,\n      \"supports_batch\": true\n    },\n    {\n      \"id\": \"sync-3\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"max_resolution\": \"string\",\n      \"max_duration_seconds\": 7346,\n      \"cost_per_second\": 4203.510610635918,\n      \"supports_batch\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd10e613-8631-4be2-aca7-7f8ee7ed10bf",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sync.so/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62aacb83-23ca-4f77-975d-b73a18b4584e",
+    "name": "Sync Labs Assets Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Sync Labs API provides studio-grade AI lip-sync and visual dubbing capabilities. Generate perfectly synchronized lip movements for any video and audio input using state-of-the-art models. Supports single generation, batch processing, asset management, and webhook notifications. Used for video localization, content dubbing, personalized video, and educational content translation.\n\nContact Support:\n Name: Sync Labs Support\n Email: hello@sync.so",
+      "type": "text/plain"
+    }
+  }
+}

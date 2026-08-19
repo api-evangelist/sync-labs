@@ -1,0 +1,58 @@
+# Sync
+
+AI video lip-sync and visual dubbing platform.
+
+Generate studio-grade lip-sync for films, ads, dubbing, and content creation via API or web studio. Founded in 2023, backed by Y Combinator (W24).
+
+## Documentation
+
+The llms.txt files containing all Sync documentation.
+
+- [Documentation index](https://sync.so/docs/llms.txt)
+- [Full documentation](https://sync.so/docs/llms-full.txt)
+- [API Reference](https://sync.so/docs/api-reference)
+- [Getting Started](https://sync.so/docs/getting-started)
+
+## MCP Server
+
+Add Sync to Cursor, Claude, and other MCP clients.
+
+- [MCP Server Docs](https://sync.so/docs/plugins-and-extensions/mcp-server)
+
+## OpenAPI Spec
+
+The full OpenAPI 3.0 specification for the Sync API.
+
+- [OpenAPI spec (JSON)](https://sync.so/openapi.json)
+
+## Pricing
+
+Plans, features, and per-model pricing for AI lip-sync generation.
+
+- [Pricing (Markdown)](https://sync.so/pricing.md)
+- [Pricing (HTML)](https://sync.so/pricing)
+
+## Models
+
+- **sync-3**: Advanced lip-sync model for side angles, low light, animation, and closed lips. $0.00534/frame at 25fps.
+- **lipsync-2-pro**: Studio-grade lip-sync model. $0.00333/frame at 25fps.
+- **react-1**: AI emotion editing for video expressions. $0.00667/frame at 25fps.
+- **lipsync-2**: Standard lip-sync model. $0.002/frame at 25fps.
+- **lipsync-1.9.0**: Legacy lip-sync model. $0.001/frame at 25fps.
+
+## SDKs
+
+- [TypeScript](https://github.com/synchronicity-labs/sync-typescript-sdk)
+- [Python](https://github.com/synchronicity-labs/sync-python-sdk)
+
+## Plugins & Extensions
+
+- [Adobe Premiere Plugin](https://sync.so/docs/plugins-and-extensions/adobe-premiere-pro/installation-guide)
+- [ComfyUI Node](https://github.com/synchronicity-labs/sync-comfyui)
+- [MCP Server](https://sync.so/docs/plugins-and-extensions/mcp-server)
+
+## Links
+
+- [Homepage](https://sync.so)
+- [Blog](https://sync.so/blog)
+- [Changelog](https://sync.so/changelog)

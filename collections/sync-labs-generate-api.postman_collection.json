@@ -1,0 +1,926 @@
+{
+  "item": [
+    {
+      "id": "5e7683d1-a9d3-4bf0-aae4-ee7e7fa088c0",
+      "name": "Generate",
+      "description": {
+        "content": "Lip-sync video generation operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da3ee169-5c10-4146-86c1-9981a09cde00",
+          "name": "Create Lip-Sync Generation",
+          "request": {
+            "name": "Create Lip-Sync Generation",
+            "description": {
+              "content": "Submit a video and audio input to generate a lip-synced output video. The operation is asynchronous — poll the GET endpoint or use webhooks for completion notification. Rate limited to 60 requests/min.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"video_url\": \"<uri>\",\n  \"audio_url\": \"<uri>\",\n  \"model\": \"<string>\",\n  \"video_asset_id\": \"<string>\",\n  \"audio_asset_id\": \"<string>\",\n  \"webhook_url\": \"<uri>\",\n  \"synergize\": \"<boolean>\",\n  \"max_face_resolution\": \"<integer>\",\n  \"output_format\": \"mp4\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b07bcd30-f52a-4a01-bc99-d17e41a77d0f",
+              "name": "Generation job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"video_url\": \"<uri>\",\n  \"audio_url\": \"<uri>\",\n  \"model\": \"<string>\",\n  \"video_asset_id\": \"<string>\",\n  \"audio_asset_id\": \"<string>\",\n  \"webhook_url\": \"<uri>\",\n  \"synergize\": \"<boolean>\",\n  \"max_face_resolution\": \"<integer>\",\n  \"output_format\": \"mp4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"failed\",\n  \"created_at\": \"2013-01-11T15:30:38.148Z\",\n  \"completed_at\": \"2023-06-01T20:11:23.743Z\",\n  \"video_url\": \"http://XIecIo.utaotzedyDEb2FSTY0PdsZkhBw25d\",\n  \"model\": \"<string>\",\n  \"error\": \"string\",\n  \"duration_seconds\": 864.7753663855606,\n  \"cost\": 9584.854397311872\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28233a7c-2398-4204-9d0b-a929c4a20e41",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"video_url\": \"<uri>\",\n  \"audio_url\": \"<uri>\",\n  \"model\": \"<string>\",\n  \"video_asset_id\": \"<string>\",\n  \"audio_asset_id\": \"<string>\",\n  \"webhook_url\": \"<uri>\",\n  \"synergize\": \"<boolean>\",\n  \"max_face_resolution\": \"<integer>\",\n  \"output_format\": \"mp4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50e9d66c-28b7-49c5-9dfa-57971adc4eee",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"video_url\": \"<uri>\",\n  \"audio_url\": \"<uri>\",\n  \"model\": \"<string>\",\n  \"video_asset_id\": \"<string>\",\n  \"audio_asset_id\": \"<string>\",\n  \"webhook_url\": \"<uri>\",\n  \"synergize\": \"<boolean>\",\n  \"max_face_resolution\": \"<integer>\",\n  \"output_format\": \"mp4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2e4b096-c365-4298-83be-46195fd9e166",
+              "name": "Rate limit exceeded (60 req/min on POST /v2/generate)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"video_url\": \"<uri>\",\n  \"audio_url\": \"<uri>\",\n  \"model\": \"<string>\",\n  \"video_asset_id\": \"<string>\",\n  \"audio_asset_id\": \"<string>\",\n  \"webhook_url\": \"<uri>\",\n  \"synergize\": \"<boolean>\",\n  \"max_face_resolution\": \"<integer>\",\n  \"output_format\": \"mp4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b0e6353-363b-459e-a248-bcd11671c0e8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"video_url\": \"<uri>\",\n  \"audio_url\": \"<uri>\",\n  \"model\": \"<string>\",\n  \"video_asset_id\": \"<string>\",\n  \"audio_asset_id\": \"<string>\",\n  \"webhook_url\": \"<uri>\",\n  \"synergize\": \"<boolean>\",\n  \"max_face_resolution\": \"<integer>\",\n  \"output_format\": \"mp4\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6b7a41e-a90d-4d74-bb51-63e2dc574373",
+          "name": "List Generations",
+          "request": {
+            "name": "List Generations",
+            "description": {
+              "content": "List all generation jobs for the authenticated account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "685f57c5-1693-4b65-8834-51320baadeec",
+              "name": "List of generation jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"generations\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"completed\",\n      \"created_at\": \"1950-04-17T12:06:45.691Z\",\n      \"completed_at\": \"1982-05-03T04:12:15.548Z\",\n      \"video_url\": \"https://IuTMrbDDZLqdnrnAjGPOiJHVSlL.qznAxyr9CbOC7Qy9psmzdgi,6JBi55Bv\",\n      \"model\": \"<string>\",\n      \"error\": \"string\",\n      \"duration_seconds\": 5484.669652717992,\n      \"cost\": 8309.532097823067\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"completed\",\n      \"created_at\": \"1960-11-23T17:42:57.084Z\",\n      \"completed_at\": \"2005-03-08T11:26:43.305Z\",\n      \"video_url\": \"https://vmoGgaiEFyILCDoVfYZCTNIXqpu.wkdkt2OH0AWH6o8x1AzodOHVSH-obR6b+Sdt.l-Ci99rVJ5PTYDWA+ECH\",\n      \"model\": \"<string>\",\n      \"error\": \"string\",\n      \"duration_seconds\": 3784.8942958072416,\n      \"cost\": 7730.980694380848\n    }\n  ],\n  \"total\": 868,\n  \"has_more\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb4c11f9-09ee-41ab-ab02-a9ed9e362a8b",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0774851-e503-449d-83a6-49bd9128a4a2",
+          "name": "Get Generation Status",
+          "request": {
+            "name": "Get Generation Status",
+            "description": {
+              "content": "Retrieve the status and result of a specific generation job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "generate",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Generation job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b147e29a-9add-4489-885f-8ca483d3ca80",
+              "name": "Generation job details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Generation job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"failed\",\n  \"created_at\": \"2013-01-11T15:30:38.148Z\",\n  \"completed_at\": \"2023-06-01T20:11:23.743Z\",\n  \"video_url\": \"http://XIecIo.utaotzedyDEb2FSTY0PdsZkhBw25d\",\n  \"model\": \"<string>\",\n  \"error\": \"string\",\n  \"duration_seconds\": 864.7753663855606,\n  \"cost\": 9584.854397311872\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bbc41f6-9bde-40ce-a275-f09f9c7143ed",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Generation job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcf33c61-9d79-4a66-9b59-8432af5742c2",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Generation job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44480d4f-671f-429b-83dd-62c1a1367dfa",
+          "name": "Estimate Generation Cost",
+          "request": {
+            "name": "Estimate Generation Cost",
+            "description": {
+              "content": "Calculate the estimated cost before submitting a generation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "generate",
+                "estimate-cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "(Required) AI model to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "duration",
+                  "value": "<float>",
+                  "description": "(Required) Video duration in seconds"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd5e6bc9-503d-47ad-9d90-de0eac557dfa",
+              "name": "Cost estimate",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate",
+                    "estimate-cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "duration",
+                      "value": "<float>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"estimated_cost\": 4739.241267043811,\n  \"model\": \"string\",\n  \"duration_seconds\": 6453.275432243107,\n  \"cost_per_second\": 824.9784811697081\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69e2a711-4f3c-4a4c-b200-6e5190482fc3",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate",
+                    "estimate-cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "duration",
+                      "value": "<float>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53f4e9ba-1d21-4df7-afb0-f2d3e2ec5152",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generate",
+                    "estimate-cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "duration",
+                      "value": "<float>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sync.so/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b295d19f-7a12-416b-ade9-5449ac104992",
+    "name": "Sync Labs Assets Generate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Sync Labs API provides studio-grade AI lip-sync and visual dubbing capabilities. Generate perfectly synchronized lip movements for any video and audio input using state-of-the-art models. Supports single generation, batch processing, asset management, and webhook notifications. Used for video localization, content dubbing, personalized video, and educational content translation.\n\nContact Support:\n Name: Sync Labs Support\n Email: hello@sync.so",
+      "type": "text/plain"
+    }
+  }
+}

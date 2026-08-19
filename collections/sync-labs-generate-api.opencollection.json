@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sync Labs Assets Generate API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Generate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Generations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/generate",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              }
+            ]
+          },
+          "docs": "List all generation jobs for the authenticated account"
+        },
+        {
+          "info": {
+            "name": "Create Lip-Sync Generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sync.so/v2/generate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a video and audio input to generate a lip-synced output video. The operation is asynchronous — poll the GET endpoint or use webhooks for completion notification. Rate limited to 60 requests/min."
+        },
+        {
+          "info": {
+            "name": "Get Generation Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/generate/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Generation job ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and result of a specific generation job"
+        },
+        {
+          "info": {
+            "name": "Estimate Generation Cost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sync.so/v2/generate/estimate-cost",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "AI model to use"
+              },
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query",
+                "description": "Video duration in seconds"
+              }
+            ]
+          },
+          "docs": "Calculate the estimated cost before submitting a generation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
