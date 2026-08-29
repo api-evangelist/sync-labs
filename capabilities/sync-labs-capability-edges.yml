@@ -1,0 +1,36 @@
+slug: sync-labs
+provider: Sync Labs
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Generate
+  spec_file: sync-labs-generate-api-openapi.yml
+  capability_id: BC-3700.60
+  capability_id_l1: BC-3700
+  capability_name: Localisation & Versioning Management
+  confidence: 0.8
+  evidence: POST /generate createGeneration Create Lip-Sync Generation; 'Generate perfectly synchronized
+    lip movements for any video and audio input ... video localization, content dubbing'
+  reason: Core operation produces lip-synced/dubbed versions of video content, which is localisation and
+    versioning of audiovisual content. Some ambiguity with post-production finishing, hence 0.8.
+- tag: Batch
+  spec_file: sync-labs-batch-api-openapi.yml
+  capability_id: BC-3700.60
+  capability_id_l1: BC-3700
+  capability_name: Localisation & Versioning Management
+  confidence: 0.7
+  evidence: POST /batch createBatch Create Batch Generation; 'studio-grade AI lip-sync and visual dubbing
+    capabilities ... Used for video localization, content dubbing'
+  reason: Batch here is bulk creation of lip-sync/visual-dubbing renditions of video, i.e. dubbing and
+    versioning of audiovisual content for other languages. Mapped to Localisation & Versioning; confidence
+    tempered because 'Batch' is partly a job-orchestration surface.

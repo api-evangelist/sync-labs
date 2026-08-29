@@ -143,6 +143,9 @@ apis:
   - type: GettingStarted
     url: https://sync.so/docs/quickstart
 common:
+  - type: CapabilityMap
+    url: capabilities/sync-labs-capability-edges.yml
+    name: Sync Labs Business Capability Map
   - type: AgenticAccess
     url: agentic-access/sync-labs-agentic-access.yml
   - type: DomainSecurity
