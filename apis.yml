@@ -6,6 +6,18 @@ description: >-
   dubbing, content localization, and personalized video generation at scale. Models include sync-3, lipsync-2-pro,
   lipsync-2, lipsync-1.9, and react-1, with support for batch processing (up to 500 videos), webhooks, Python and
   TypeScript SDKs, Adobe Premiere plugin, and ComfyUI integration. Backed by Y Combinator.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
