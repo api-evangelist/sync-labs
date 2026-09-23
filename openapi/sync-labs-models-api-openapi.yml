@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Sync Labs Assets Models API
+  title: Sync Labs Models API
   description: The Sync Labs API provides studio-grade AI lip-sync and visual dubbing capabilities. Generate perfectly synchronized lip movements for any video and audio input using state-of-the-art models. Supports single generation, batch processing, asset management, and webhook notifications. Used for video localization, content dubbing, personalized video, and educational content translation.
   version: v2
   contact:
@@ -41,13 +41,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     ModelId:
       type: string
@@ -58,18 +51,6 @@ components:
       - lipsync-1.9
       - react-1
       description: AI model identifier
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error description
-        request_id:
-          type: string
-          description: Request ID for support reference
     Model:
       type: object
       properties:
@@ -94,6 +75,25 @@ components:
         supports_batch:
           type: boolean
           description: Whether the model supports batch processing
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request ID for support reference
+  responses:
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
