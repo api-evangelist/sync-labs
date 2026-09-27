@@ -164,99 +164,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimitExceeded:
-      description: Rate limit exceeded (60 req/min on POST /v2/generate)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ModelId:
-      type: string
-      enum:
-      - sync-3
-      - lipsync-2-pro
-      - lipsync-2
-      - lipsync-1.9
-      - react-1
-      description: AI model identifier
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error description
-        request_id:
-          type: string
-          description: Request ID for support reference
-    GenerationRequest:
-      type: object
-      required:
-      - video_url
-      - audio_url
-      - model
-      properties:
-        video_url:
-          type: string
-          format: uri
-          description: URL to the source video (MP4 or common video formats)
-        audio_url:
-          type: string
-          format: uri
-          description: URL to the source audio (WAV or MP3)
-        video_asset_id:
-          type: string
-          description: Alternatively, provide an uploaded video asset ID
-        audio_asset_id:
-          type: string
-          description: Alternatively, provide an uploaded audio asset ID
-        model:
-          $ref: '#/components/schemas/ModelId'
-        webhook_url:
-          type: string
-          format: uri
-          description: URL to receive webhook notification on completion
-        synergize:
-          type: boolean
-          description: Enable multi-speaker detection and selection
-        max_face_resolution:
-          type: integer
-          description: Maximum face resolution cap in pixels
-        output_format:
-          type: string
-          enum:
-          - mp4
-          - webm
-          default: mp4
-          description: Output video format
     GenerationResponse:
       type: object
       properties:
@@ -304,6 +212,98 @@ components:
           - 'null'
           format: float
           description: Actual cost of the generation in USD
+    GenerationRequest:
+      type: object
+      required:
+      - video_url
+      - audio_url
+      - model
+      properties:
+        video_url:
+          type: string
+          format: uri
+          description: URL to the source video (MP4 or common video formats)
+        audio_url:
+          type: string
+          format: uri
+          description: URL to the source audio (WAV or MP3)
+        video_asset_id:
+          type: string
+          description: Alternatively, provide an uploaded video asset ID
+        audio_asset_id:
+          type: string
+          description: Alternatively, provide an uploaded audio asset ID
+        model:
+          $ref: '#/components/schemas/ModelId'
+        webhook_url:
+          type: string
+          format: uri
+          description: URL to receive webhook notification on completion
+        synergize:
+          type: boolean
+          description: Enable multi-speaker detection and selection
+        max_face_resolution:
+          type: integer
+          description: Maximum face resolution cap in pixels
+        output_format:
+          type: string
+          enum:
+          - mp4
+          - webm
+          default: mp4
+          description: Output video format
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request ID for support reference
+    ModelId:
+      type: string
+      enum:
+      - sync-3
+      - lipsync-2-pro
+      - lipsync-2
+      - lipsync-1.9
+      - react-1
+      description: AI model identifier
+  responses:
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate limit exceeded (60 req/min on POST /v2/generate)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

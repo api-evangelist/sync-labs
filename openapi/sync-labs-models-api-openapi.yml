@@ -42,15 +42,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ModelId:
-      type: string
-      enum:
-      - sync-3
-      - lipsync-2-pro
-      - lipsync-2
-      - lipsync-1.9
-      - react-1
-      description: AI model identifier
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request ID for support reference
     Model:
       type: object
       properties:
@@ -75,18 +78,15 @@ components:
         supports_batch:
           type: boolean
           description: Whether the model supports batch processing
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error description
-        request_id:
-          type: string
-          description: Request ID for support reference
+    ModelId:
+      type: string
+      enum:
+      - sync-3
+      - lipsync-2-pro
+      - lipsync-2
+      - lipsync-1.9
+      - react-1
+      description: AI model identifier
   responses:
     Unauthorized:
       description: Unauthorized - missing or invalid API key
