@@ -212,6 +212,18 @@ components:
           - 'null'
           format: float
           description: Actual cost of the generation in USD
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request ID for support reference
     GenerationRequest:
       type: object
       required:
@@ -252,18 +264,6 @@ components:
           - webm
           default: mp4
           description: Output video format
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error description
-        request_id:
-          type: string
-          description: Request ID for support reference
     ModelId:
       type: string
       enum:
@@ -274,8 +274,8 @@ components:
       - react-1
       description: AI model identifier
   responses:
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
+    InternalError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -286,20 +286,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    InternalError:
-      description: Internal server error
+    RateLimitExceeded:
+      description: Rate limit exceeded (60 req/min on POST /v2/generate)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimitExceeded:
-      description: Rate limit exceeded (60 req/min on POST /v2/generate)
       content:
         application/json:
           schema:
