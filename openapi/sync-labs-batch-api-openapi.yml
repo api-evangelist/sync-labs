@@ -148,53 +148,6 @@ components:
           - 'null'
           format: float
           description: Actual cost of the generation in USD
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-        message:
-          type: string
-          description: Human-readable error description
-        request_id:
-          type: string
-          description: Request ID for support reference
-    BatchResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique batch ID
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - completed
-          - partially_failed
-          - failed
-        created_at:
-          type: string
-          format: date-time
-        completed_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        total:
-          type: integer
-          description: Total number of generations in the batch
-        completed:
-          type: integer
-          description: Number of completed generations
-        failed:
-          type: integer
-          description: Number of failed generations
-        generations:
-          type: array
-          items:
-            $ref: '#/components/schemas/GenerationResponse'
     GenerationRequest:
       type: object
       required:
@@ -244,6 +197,53 @@ components:
       - lipsync-1.9
       - react-1
       description: AI model identifier
+    BatchResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique batch ID
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - partially_failed
+          - failed
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        total:
+          type: integer
+          description: Total number of generations in the batch
+        completed:
+          type: integer
+          description: Number of completed generations
+        failed:
+          type: integer
+          description: Number of failed generations
+        generations:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenerationResponse'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request ID for support reference
     BatchRequest:
       type: object
       required:
@@ -260,12 +260,6 @@ components:
           format: uri
           description: URL to receive batch completion notification
   responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized - missing or invalid API key
       content:
@@ -274,6 +268,12 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters
       content:
         application/json:
           schema:
