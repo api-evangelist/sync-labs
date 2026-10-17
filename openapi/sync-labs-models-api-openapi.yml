@@ -54,6 +54,15 @@ components:
         request_id:
           type: string
           description: Request ID for support reference
+    ModelId:
+      type: string
+      enum:
+      - sync-3
+      - lipsync-2-pro
+      - lipsync-2
+      - lipsync-1.9
+      - react-1
+      description: AI model identifier
     Model:
       type: object
       properties:
@@ -78,15 +87,6 @@ components:
         supports_batch:
           type: boolean
           description: Whether the model supports batch processing
-    ModelId:
-      type: string
-      enum:
-      - sync-3
-      - lipsync-2-pro
-      - lipsync-2
-      - lipsync-1.9
-      - react-1
-      description: AI model identifier
   responses:
     Unauthorized:
       description: Unauthorized - missing or invalid API key
